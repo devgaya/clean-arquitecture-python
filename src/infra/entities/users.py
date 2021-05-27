@@ -1,5 +1,6 @@
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql.expression import true
 from src.infra.config import Base
 
 
@@ -14,3 +15,8 @@ class Users(Base):
 
     def __repr__(self):
         return f"User: [name={self.name}]"
+
+    def __eq__(self, other: object) -> bool:
+        if (self.id == other.id and self.name == other.name and self.password == other.password):
+            return True
+        return False
