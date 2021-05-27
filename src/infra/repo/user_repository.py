@@ -1,6 +1,6 @@
-from collections import namedtuple
+from src.domain.models import Users
 from src.infra.config import DBConnectionHandler
-from src.infra.entities import Users
+from src.infra.entities import Users as UserModel
 
 
 class UserRepository:
@@ -14,16 +14,14 @@ class UserRepository:
         :return
         """
 
-        insert_data = namedtuple("Users", "id name, password")
-
         with DBConnectionHandler() as db:
             try:
 
-                new_user = Users(name=name, password=password)
+                new_user = UserModel(name=name, password=password)
                 db.session.add(new_user)
                 db.session.commit()
 
-                return insert_data(
+                return Users(
                     id=new_user.id, name=new_user.name, password=new_user.password
                 )
 
