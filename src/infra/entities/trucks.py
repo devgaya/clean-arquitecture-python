@@ -5,15 +5,16 @@ from src.infra.config import Base
 
 
 class TruckModels(enum.Enum):
-    """ Truck models """
+    """Truck models"""
+
     hr = "HR"
     carreta = "Carreta"
     cegonha = "Cegonha"
 
 
 class Trucks(Base):
-    """ Trucks Entity
-    """
+    """Trucks Entity"""
+
     __tablename__ = "trucks"
 
     id = Column(Integer, primary_key=True)
